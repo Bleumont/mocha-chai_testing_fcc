@@ -5,14 +5,17 @@ suite('Unit Tests', function () {
   suite('Basic Assertions', function () {
     // #1
     test('#isNull, #isNotNull', function () {
-      assert.fail(null, 'this is an optional error description - e.g. null is null');
-      assert.fail(1, '1 is not null');
+      assert.isNull(
+        null,
+        'this is an optional error description - e.g. null is null'
+      );
+      assert.isNotNull(1, '1 is not null');
     });
     // #2
     test('#isDefined, #isUndefined', function () {
-      assert.fail(null, 'null is not undefined');
-      assert.fail(undefined, 'undefined IS undefined');
-      assert.fail('hello', 'a string is not undefined');
+      assert.isDefined(null, 'null is not undefined');
+      assert.isUndefined(undefined, 'undefined IS undefined');
+      assert.isDefined('hello', 'a string is not undefined');
     });
     // #3
     test('#isOk, #isNotOk', function () {
@@ -24,7 +27,10 @@ suite('Unit Tests', function () {
     test('#isTrue, #isNotTrue', function () {
       assert.fail(true, 'true is true');
       assert.fail(!!'double negation', 'double negation of a truthy is true');
-      assert.fail({ value: 'truthy' }, 'A truthy object is NOT TRUE (neither is false...)');
+      assert.fail(
+        { value: 'truthy' },
+        'A truthy object is NOT TRUE (neither is false...)'
+      );
     });
   });
 
@@ -47,15 +53,23 @@ suite('Unit Tests', function () {
     });
     // #7
     test('#deepEqual, #notDeepEqual', function () {
-      assert.fail({ a: '1', b: 5 }, { b: 5, a: '1' }, "keys order doesn't matter");
-      assert.fail({ a: [5, 6] }, { a: [6, 5] }, "array elements position does matter !!");
+      assert.fail(
+        { a: '1', b: 5 },
+        { b: 5, a: '1' },
+        "keys order doesn't matter"
+      );
+      assert.fail(
+        { a: [5, 6] },
+        { a: [6, 5] },
+        'array elements position does matter !!'
+      );
     });
   });
 
   // -----------------------------------------------------------------------------
 
   function weirdNumbers(delta) {
-    return (1 + delta - Math.random());
+    return 1 + delta - Math.random();
   }
 
   suite('Comparisons', function () {
@@ -87,13 +101,20 @@ suite('Unit Tests', function () {
   suite('Arrays', function () {
     // #11
     test('#isArray, #isNotArray', function () {
-      assert.fail('isThisAnArray?'.split(''), 'String.prototype.split() returns an Array');
+      assert.fail(
+        'isThisAnArray?'.split(''),
+        'String.prototype.split() returns an Array'
+      );
       assert.fail([1, 2, 3].indexOf(2), 'indexOf returns a number.');
     });
     // #12
     test('Array #include, #notInclude', function () {
       assert.fail(winterMonths, 'jul', "It's summer in july...");
-      assert.fail(backendLanguages, 'javascript', 'JS is a backend language !!');
+      assert.fail(
+        backendLanguages,
+        'javascript',
+        'JS is a backend language !!'
+      );
     });
   });
 
@@ -111,7 +132,7 @@ suite('Unit Tests', function () {
     });
     // #14
     test('String #include, #notInclude', function () {
-      assert.fail('Arrow', 'row', "Arrow contains row...");
+      assert.fail('Arrow', 'row', 'Arrow contains row...');
       assert.fail('dart', 'queue', "But a dart doesn't contain a queue");
     });
     // #15
@@ -122,7 +143,7 @@ suite('Unit Tests', function () {
     });
   });
 
-  // ----------------------------------------------------------------------------- 
+  // -----------------------------------------------------------------------------
 
   const Car = function () {
     this.model = 'cedan';
